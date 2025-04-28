@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect, use } from "react";
+import React, { useState, useEffect } from "react";
 import { updatePost, getCategories } from "@/lib/blogService";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
@@ -85,12 +85,8 @@ const CustomSelect = ({
 export default function EditBlogPost({
   params,
 }: {
-  params: { slug: string } | Promise<{ slug: string }>;
+  params: Promise<{ slug: string }>;
 }) {
-  // Unwrap params using React.use()
-  const resolvedParams = use(params as Promise<{ slug: string }>);
-  const slug = resolvedParams.slug;
-
   const router = useRouter();
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
@@ -100,11 +96,28 @@ export default function EditBlogPost({
   const [uploadingImage, setUploadingImage] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState("");
   const [uploadError, setUploadError] = useState<string | null>(null);
+  const [slug, setSlug] = useState<string>("");
+
+  // Extract slug param value
+  useEffect(() => {
+    const getParamValues = async () => {
+      try {
+        const resolvedParams = await params;
+        setSlug(resolvedParams.slug);
+      } catch (error) {
+        console.error("Error resolving params:", error);
+      }
+    };
+
+    getParamValues();
+  }, [params]);
 
   // Fetch post data
   const { data: post, isLoading: isLoadingPost } = useQuery<PostData>({
     queryKey: ["post", slug],
     queryFn: async () => {
+      if (!slug) throw new Error("Slug not available yet");
+
       const postsRef = collection(db, "posts");
       const querySnapshot = await getDocs(postsRef);
 
@@ -252,7 +265,7 @@ export default function EditBlogPost({
             Redirecting to login...
           </p>
         </div>
-      ) : isLoadingPost ? (
+      ) : isLoadingPost || !slug ? (
         <div className='flex items-center justify-center min-h-screen'>
           <Loader />
         </div>
