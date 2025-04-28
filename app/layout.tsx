@@ -31,8 +31,8 @@ const cinzel = Cinzel({
 });
 
 export const metadata: Metadata = {
-  title: "Zakarie Hashim",
-  description: "Zakarie Hashim's Portfolio: Blogs, Articles and News",
+  title: "Zakarie Hashi",
+  description: "Zakarie Hashi's Portfolio: Blogs, Articles and News",
 };
 
 export default function RootLayout({
