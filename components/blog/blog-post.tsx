@@ -1,10 +1,10 @@
 "use client";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import SlideReveal from "@/components/ui/slidereveal";
 import Image from "next/image";
 import "../styles/blog.css";
 import { HiCalendar, HiTag } from "react-icons/hi";
-import { FiLinkedin, FiMail, FiShare2 } from "react-icons/fi";
+import { FiLinkedin, FiMail, FiShare2, FiX } from "react-icons/fi";
 import { FaTwitter, FaFacebook, FaWhatsapp } from "react-icons/fa";
 import Link from "next/link";
 
@@ -19,7 +19,17 @@ interface Post {
   categoryId: string;
 }
 
+interface ShareLink {
+  name: string;
+  icon: React.ElementType;
+  url: string;
+  color: string;
+}
+
 export default function BlogPost({ post }: { post: Post }) {
+  const [showShareOptions, setShowShareOptions] = useState(false);
+  const [shareLinks, setShareLinks] = useState<ShareLink[]>([]);
+
   if (!post) {
     return <div>No post data available</div>;
   }
@@ -30,44 +40,44 @@ export default function BlogPost({ post }: { post: Post }) {
     day: "numeric",
   });
 
-  // Share functionality
-  const shareUrl = typeof window !== "undefined" ? window.location.href : "";
-  const shareTitle = post.title;
-
-  const shareLinks = [
-    {
-      name: "Twitter",
-      icon: FaTwitter,
-      url: `https://twitter.com/intent/tweet?text=${encodeURIComponent(
-        shareTitle
-      )}&url=${encodeURIComponent(shareUrl)}`,
-      color: "#1DA1F2",
-    },
-    {
-      name: "Facebook",
-      icon: FaFacebook,
-      url: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
-        shareUrl
-      )}`,
-      color: "#4267B2",
-    },
-    {
-      name: "LinkedIn",
-      icon: FiLinkedin,
-      url: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(
-        shareUrl
-      )}`,
-      color: "#0077B5",
-    },
-    {
-      name: "WhatsApp",
-      icon: FaWhatsapp,
-      url: `https://api.whatsapp.com/send?text=${encodeURIComponent(
-        `${shareTitle} ${shareUrl}`
-      )}`,
-      color: "#25D366",
-    },
-  ];
+  // Use effect to handle client-side URL generation to prevent hydration errors
+  useEffect(() => {
+    const currentUrl = window.location.href;
+    setShareLinks([
+      {
+        name: "Twitter",
+        icon: FaTwitter,
+        url: `https://twitter.com/intent/tweet?text=${encodeURIComponent(
+          post.title
+        )}&url=${encodeURIComponent(currentUrl)}`,
+        color: "#1DA1F2",
+      },
+      {
+        name: "Facebook",
+        icon: FaFacebook,
+        url: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
+          currentUrl
+        )}`,
+        color: "#4267B2",
+      },
+      {
+        name: "LinkedIn",
+        icon: FiLinkedin,
+        url: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(
+          currentUrl
+        )}`,
+        color: "#0077B5",
+      },
+      {
+        name: "WhatsApp",
+        icon: FaWhatsapp,
+        url: `https://api.whatsapp.com/send?text=${encodeURIComponent(
+          `${post.title} ${currentUrl}`
+        )}`,
+        color: "#25D366",
+      },
+    ]);
+  }, [post.title]); // Only re-run if the post title changes
 
   return (
     <article className='bg-gradient-to-b from-amber-50 to-white min-h-screen'>
@@ -181,41 +191,48 @@ export default function BlogPost({ post }: { post: Post }) {
               </div>
             </div>
           </div>
-
-          {/* Share buttons for mobile - fixed at bottom */}
-          <div className='sm:hidden fixed bottom-0 left-0 right-0 bg-white shadow-lg border-t border-gray-200 p-3 flex items-center justify-between z-40'>
-            <span className='text-gray-600 text-sm font-medium flex items-center'>
-              <FiShare2 className='mr-1 h-4 w-4' /> Share:
-            </span>
-            <div className='flex items-center gap-3'>
-              {shareLinks.map((link) => (
-                <Link
-                  key={link.name}
-                  href={link.url}
-                  target='_blank'
-                  rel='noopener noreferrer'
-                  aria-label={`Share on ${link.name}`}
-                  style={{ color: link.color }}>
-                  <link.icon className='h-5 w-5' />
-                </Link>
-              ))}
-            </div>
-          </div>
         </div>
       </div>
 
-      {/* LinkedIn floating pill - adjusted position for mobile to avoid overlap with share bar */}
-      <div className='fixed bottom-16 sm:bottom-8 right-4 sm:right-8 z-50'>
-        <Link
-          href='https://www.linkedin.com/in/zakariehashi/'
-          target='_blank'
-          rel='noopener noreferrer'
-          className='flex items-center space-x-1 sm:space-x-2 bg-white/90 backdrop-blur-sm px-3 sm:px-5 py-2 sm:py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 border border-[#0077B5]/20 group'>
-          <span className='font-medium text-sm sm:text-base text-gray-700 group-hover:text-[#0077B5] transition-colors duration-300'>
-            Follow me on
-          </span>
-          <FiLinkedin className='h-4 w-4 sm:h-5 sm:w-5 text-[#0077B5]' />
-        </Link>
+      {/* Share floating pill with expandable options - works for both mobile & desktop */}
+      <div className='fixed bottom-8 right-4 sm:right-8 z-50'>
+        <div className='relative'>
+          {/* Share options popup */}
+          {showShareOptions && (
+            <div className='absolute bottom-14 right-0 bg-white/95 backdrop-blur-sm shadow-xl rounded-xl p-3 border border-gray-200 flex flex-col items-end gap-3 mb-2'>
+              <button
+                onClick={() => setShowShareOptions(false)}
+                className='text-gray-500 hover:text-gray-700 p-1'
+                aria-label='Close share options'>
+                <FiX className='h-4 w-4' />
+              </button>
+              <div className='flex gap-3'>
+                {shareLinks.map((link) => (
+                  <Link
+                    key={link.name}
+                    href={link.url}
+                    target='_blank'
+                    rel='noopener noreferrer'
+                    aria-label={`Share on ${link.name}`}
+                    className='p-2 rounded-full hover:bg-gray-100 transition-colors duration-200'
+                    style={{ color: link.color }}>
+                    <link.icon className='h-5 w-5' />
+                  </Link>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Share button */}
+          <button
+            onClick={() => setShowShareOptions(!showShareOptions)}
+            className='flex items-center space-x-1 sm:space-x-2 bg-white/90 backdrop-blur-sm px-3 sm:px-5 py-2 sm:py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200 group'>
+            <span className='font-medium text-sm sm:text-base text-gray-700 group-hover:text-[#7e7dff] transition-colors duration-300'>
+              Share
+            </span>
+            <FiShare2 className='h-4 w-4 sm:h-5 sm:w-5 text-[#7e7dff]' />
+          </button>
+        </div>
       </div>
     </article>
   );
