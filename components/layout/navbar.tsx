@@ -10,6 +10,12 @@ const grenze = Grenze_Gotisch({
   subsets: ["latin"],
 });
 
+interface NavLink {
+  href: string;
+  label: string;
+  external?: boolean;
+}
+
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -29,10 +35,10 @@ export default function Navbar() {
     setIsMenuOpen(false);
   }, [pathname]);
 
-  const navLinks = [
-    { href: "/", label: "Home" },
-    { href: "/blog", label: "Blog" },
-    { href: "/contact", label: "Contact" },
+  const navLinks: NavLink[] = [
+    { href: "/", label: "Home", external: false },
+    { href: "/blog", label: "Blog", external: false },
+    { href: "/contact", label: "Contact", external: false },
   ];
 
   return (

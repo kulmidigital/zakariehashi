@@ -3,8 +3,8 @@ import { Inter, Montserrat, Raleway, Cinzel } from "next/font/google";
 import { Toaster } from "sonner";
 import "./globals.css";
 import Providers from "./providers";
-import Navbar from "@/components/ui/navbar";
-import Footer from "@/components/ui/footer";
+import Navbar from "@/components/layout/navbar";
+import Footer from "@/components/layout/footer";
 
 const inter = Inter({
   subsets: ["latin"],
