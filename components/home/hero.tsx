@@ -53,19 +53,6 @@ const Hero = () => {
                 <FiArrowRight className='ml-2 w-4 h-4 sm:w-5 sm:h-5 transition-transform group-hover:translate-x-1' />
               </span>
             </a>
-
-            {/* Visit Tawakal Button */}
-            <a
-              href='https://tawakalexpress.net/'
-              target='_blank'
-              rel='noopener noreferrer'
-              className='inline-flex items-center justify-center group relative overflow-hidden rounded-lg w-full sm:w-auto'>
-              <span className='absolute inset-0 bg-gradient-to-r from-[#2e2e57] to-[#4341a5] transition-all duration-300 group-hover:scale-105'></span>
-              <span className='relative flex items-center justify-center bg-[#1a1a36] border border-[#2e2d56] rounded-lg px-6 sm:px-8 py-3 sm:py-4 font-montserrat text-white text-sm font-medium transition-all duration-300 group-hover:bg-[#1a1a36]/0 w-full'>
-                Visit Tawakal
-                <FiExternalLink className='ml-2 w-4 h-4 sm:w-5 sm:h-5 transition-transform group-hover:translate-x-1' />
-              </span>
-            </a>
           </div>
         </div>
 
@@ -83,10 +70,11 @@ const Hero = () => {
                 "
               </span>
               <p className='font-raleway text-[#d0d0ff] text-base sm:text-lg leading-relaxed relative z-10 italic'>
-                At Tawakal Express, we're in the business of trust. Every day,
-                families rely on us to deliver more than just money—they count
-                on us to keep them connected. That's a responsibility we take to
-                heart.
+                In finance, we navigate more than numbers—we guide the future of
+                families and businesses. Every financial decision creates
+                ripples that affect lives. My mission is to bring clarity,
+                strategy, and ethical leadership to the complex world of
+                finance.
               </p>
               <span className='absolute -bottom-6 sm:-bottom-8 -right-2 text-4xl sm:text-6xl text-[#7e7dff]/10 font-serif'>
                 "
@@ -94,11 +82,9 @@ const Hero = () => {
             </div>
             <div className='mt-6 sm:mt-8 pt-4 sm:pt-6 border-t border-[#2e2d56]'>
               <a
-                href='https://tawakalexpress.net/about'
-                target='_blank'
-                rel='noopener noreferrer'
+                href='/blog'
                 className='font-inter text-[#7e7dff] text-xs sm:text-sm hover:text-white transition-colors flex items-center group'>
-                Discover our journey
+                Explore my perspectives
                 <FiArrowRight className='ml-2 w-3 h-3 sm:w-4 sm:h-4 transition-transform group-hover:translate-x-1' />
               </a>
             </div>
@@ -115,19 +101,6 @@ const Hero = () => {
             <span className='relative flex items-center justify-center bg-[#2a2a55] border border-[#4341a5] rounded-lg px-6 sm:px-8 py-3 sm:py-4 font-montserrat text-white text-sm font-medium transition-all duration-300 group-hover:bg-[#2a2a55]/0 w-full'>
               Read My Articles
               <FiArrowRight className='ml-2 w-4 h-4 sm:w-5 sm:h-5 transition-transform group-hover:translate-x-1' />
-            </span>
-          </a>
-
-          {/* Visit Tawakal Button */}
-          <a
-            href='https://tawakalexpress.net/'
-            target='_blank'
-            rel='noopener noreferrer'
-            className='inline-flex items-center justify-center group relative overflow-hidden rounded-lg w-full sm:w-auto'>
-            <span className='absolute inset-0 bg-gradient-to-r from-[#2e2e57] to-[#4341a5] transition-all duration-300 group-hover:scale-105'></span>
-            <span className='relative flex items-center justify-center bg-[#1a1a36] border border-[#2e2d56] rounded-lg px-6 sm:px-8 py-3 sm:py-4 font-montserrat text-white text-sm font-medium transition-all duration-300 group-hover:bg-[#1a1a36]/0 w-full'>
-              Visit Tawakal
-              <FiExternalLink className='ml-2 w-4 h-4 sm:w-5 sm:h-5 transition-transform group-hover:translate-x-1' />
             </span>
           </a>
         </div>

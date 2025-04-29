@@ -32,11 +32,7 @@ export default function Navbar() {
   const navLinks = [
     { href: "/", label: "Home" },
     { href: "/blog", label: "Blog" },
-    {
-      href: "https://tawakalexpress.net/",
-      label: "Tawakal Express",
-      external: true,
-    },
+    { href: "/contact", label: "Contact" },
   ];
 
   return (
