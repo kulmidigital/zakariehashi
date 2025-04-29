@@ -47,10 +47,8 @@ export async function generateMetadata({
     // Return metadata including OpenGraph image
     return {
       title: postData.title,
-      description: postData.content.substring(0, 160), 
       openGraph: {
         title: postData.title,
-        description: postData.content.substring(0, 160),
         images: [
           {
             url: postData.image,
@@ -63,7 +61,6 @@ export async function generateMetadata({
       twitter: {
         card: "summary_large_image",
         title: postData.title,
-        description: postData.content.substring(0, 160),
         images: [postData.image],
       },
     };
