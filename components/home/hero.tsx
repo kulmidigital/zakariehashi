@@ -62,7 +62,7 @@ const Hero = () => {
             <div className='flex mb-4 sm:mb-6 items-center'>
               <div className='w-6 sm:w-8 h-0.5 bg-[#7e7dff]'></div>
               <div className='ml-3 text-[#7e7dff] font-montserrat text-xs sm:text-sm font-medium'>
-                VISION & MISSION
+                THOUGHTS
               </div>
             </div>
             <div className='relative'>
