@@ -53,6 +53,17 @@ const Hero = () => {
                 <FiArrowRight className='ml-2 w-4 h-4 sm:w-5 sm:h-5 transition-transform group-hover:translate-x-1' />
               </span>
             </a>
+            <a
+              href='https://www.dawan.africa/news/tawakal-express-appoints-zakarie-hashi-as-the-youngest-ceo'
+              target='_blank'
+              rel='noopener noreferrer'
+              className='inline-flex items-center justify-center group relative overflow-hidden rounded-lg w-full sm:w-auto'>
+              <span className='absolute inset-0 bg-gradient-to-r from-[#3d3d7d] to-[#5b5bbd] transition-all duration-300 group-hover:scale-105'></span>
+              <span className='relative flex items-center justify-center bg-[#2a2a55] border border-[#4341a5] rounded-lg px-6 sm:px-8 py-3 sm:py-4 font-montserrat text-white text-sm font-medium transition-all duration-300 group-hover:bg-[#2a2a55]/0 w-full'>
+                What The Media Says
+                <FiExternalLink className='ml-2 w-4 h-4 sm:w-5 sm:h-5 transition-transform group-hover:translate-x-1' />
+              </span>
+            </a>
           </div>
         </div>
 
@@ -101,6 +112,17 @@ const Hero = () => {
             <span className='relative flex items-center justify-center bg-[#2a2a55] border border-[#4341a5] rounded-lg px-6 sm:px-8 py-3 sm:py-4 font-montserrat text-white text-sm font-medium transition-all duration-300 group-hover:bg-[#2a2a55]/0 w-full'>
               Read My Articles
               <FiArrowRight className='ml-2 w-4 h-4 sm:w-5 sm:h-5 transition-transform group-hover:translate-x-1' />
+            </span>
+          </a>
+          <a
+            href='https://www.dawan.africa/news/tawakal-express-appoints-zakarie-hashi-as-the-youngest-ceo'
+            target='_blank'
+            rel='noopener noreferrer'
+            className='inline-flex items-center justify-center group relative overflow-hidden rounded-lg w-full sm:w-auto'>
+            <span className='absolute inset-0 bg-gradient-to-r from-[#3d3d7d] to-[#5b5bbd] transition-all duration-300 group-hover:scale-105'></span>
+            <span className='relative flex items-center justify-center bg-[#2a2a55] border border-[#4341a5] rounded-lg px-6 sm:px-8 py-3 sm:py-4 font-montserrat text-white text-sm font-medium transition-all duration-300 group-hover:bg-[#2a2a55]/0 w-full'>
+              What The Media Says
+              <FiExternalLink className='ml-2 w-4 h-4 sm:w-5 sm:h-5 transition-transform group-hover:translate-x-1' />
             </span>
           </a>
         </div>
